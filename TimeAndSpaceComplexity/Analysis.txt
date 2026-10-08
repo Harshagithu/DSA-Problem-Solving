@@ -1,0 +1,42 @@
+What is Time Complexity?
+
+Rate at which the time taken increases with respect to the input size.
+
+Time Complexity represented in terms of O(timetaken).
+
+Ex:-
+====
+
+for(int i=1;i<=5;i++)
+{
+  sopln(i);
+}
+
+The above loop repeats 5 times so the time complexity is O(5). 
+if the above loop repeats 15 times so the time complexity is O(15).
+
+so if the above loop repeats n times so the time complexity is O(n).
+
+What is Space Complexity?
+
+The amount of memory space taken by a program.
+
+variable space + auxiliary space
+
+variable space - The space it takes from the input.
+
+auxiliary space - The space it takes to solve the problem.
+
+Ex:-
+====
+
+int arr[]=new int[10];
+
+it takes extra 10 values with the help of array. so the space complexity will be O(10)
+
+In general, for n values with the values being stored in array. The space complexity will be O(n)
+
+
+
+
+
