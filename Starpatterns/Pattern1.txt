@@ -1,0 +1,271 @@
+4 rules to solve any pattern based problems in the world :-
+===========================================================
+
+1. For the outer loop focus on the number of rows.
+2. For the inner loop focus on the number of cols and connect some where to the rows.
+3. Print them inside the inner loop.
+4. Observe Symmetry (optional).
+
+Pattern 1 :-
+============
+
+n=4
+
+****
+****
+****
+****
+
+code :-
+========
+for(int i=0;i<n;i++)
+{
+  for(int j=0;j<n;j++)
+     {
+       sop("*");
+     }
+  sopln();
+}
+
+Pattern 2 :-   (Right Angle Triangle)
+=============
+
+n=4
+
+*
+**
+***
+****
+
+code :-
+=======
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=i;j++)
+      {
+        sop("*");
+      }
+   sopln();
+}
+
+Pattern 3 :-   (Number Triangles)
+============
+
+n=4
+
+1
+1 2
+1 2 3
+1 2 3 4
+
+code :-
+========
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=i;j++)
+      {
+        sop(j);
+      }
+   sopln();
+}
+
+Pattern 4 :- (Inverted Number Triangles)
+============
+
+n=4
+
+1
+2 2
+3 3 3
+4 4 4 4 
+
+code :-
+=======
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=i;j++)
+      {
+        sop(i);
+      }
+   sopln();
+}
+
+Pattern 5 :- (Inverted Star Triangle)
+============
+
+n=4
+
+****
+***
+**
+*
+
+code :-
+=======
+for(int i=n;i>=1;i--)
+{
+   for(int j=i;j>=1;j--)
+      {
+        sop("*");
+      }
+   sopln();
+}
+
+(or)
+
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=(n-i+1);j++)
+      {
+        sop("*");
+      }
+   sopln();
+}
+
+Pattern 6 :- (Inverted Number Triangles Another Type)
+============
+
+n=4
+
+1 2 3 4 
+1 2 3
+1 2
+1
+
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=(n-i+1);j++)
+      {
+        sop(j);
+      }
+   sopln();
+}
+
+Pattern 7 :- (Pyramid Pattern)
+============
+
+n=4
+
+      *      
+    * * *    
+  * * * * *   
+* * * * * * *
+
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=(n-i+1);j++)
+      {
+         sop(" ");
+      }
+   for(int j=1;j<=(2*i-1);j++)
+      {
+         sop("*");
+      }
+   for(int j=1;j<=(n-i+1);j++)
+      {
+         sop(" ");
+      }
+   sopln();
+}
+
+Pattern 8 :- (Inverted Pyramid Pattern)
+============
+
+n=4
+
+
+* * * * * * *
+  * * * * *  
+    * * *    
+      *    
+
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=i-1;j++)
+      {
+         sop(" ");
+      }
+   for(int j=1;j<2*(n-i+1);j++)
+      {
+         sop("*");
+      }
+   for(int j=1;j<=i-1;j++)
+      {
+         sop(" ");
+      }
+   sopln();
+}
+
+Pattern 9 :- (Diamond Pattern)
+============
+
+n=4
+
+      *      
+    * * *    
+  * * * * *   
+* * * * * * *
+* * * * * * *
+  * * * * *  
+    * * *    
+      *    
+
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=(n-i+1);j++)
+      {
+         sop(" ");
+      }
+   for(int j=1;j<=(2*i-1);j++)
+      {
+         sop("*");
+      }
+   for(int j=1;j<=(n-i+1);j++)
+      {
+         sop(" ");
+      }
+   sopln();
+}
+
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=i-1;j++)
+      {
+         sop(" ");
+      }
+   for(int j=1;j<2*(n-i+1);j++)
+      {
+         sop("*");
+      }
+   for(int j=1;j<=i-1;j++)
+      {
+         sop(" ");
+      }
+   sopln();
+}
+
+Pattern 10 :- (Half Diamond Pattern)
+============
+
+n=4
+
+*
+**
+***
+****
+***
+**
+*
+
+for(int i=1;i<=(2*n-1);i++)
+{
+   int stars=i;
+   if(i>n) stars=(2*n)-i;
+   for(int j=1;j<=stars;j++)
+      {
+        sop("*");
+      }
+   sopln();
+}
+
+The above are possible star patterns needed to learn for beginers to understand the working of loops.
