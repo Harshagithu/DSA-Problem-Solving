@@ -1,0 +1,141 @@
+
+Pattern 1:- (Double Sided Triangle)
+===========
+
+n=4
+
+********
+***  ***
+**    **
+*      *
+*      *
+**    **
+***  ***
+********
+
+int space=0;
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=(n-i+1);j++)
+      {
+         sop("*");
+      }
+   for(int j=1;j<=space;j++)
+      {
+         sop(" ");
+      }
+  for(int j=1;j<=(n-i+1);j++)
+     {
+        sop("*");
+     }
+  space+=2;
+  sopln();
+}
+space-=2;
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=i;j++)
+      {
+         sop("*");
+      }
+   for(int j=1;j<=space;j++)
+      {
+         sop(" ");
+      }
+  for(int j=1;j<=i;j++)
+     {
+        sop("*");
+     }
+  space-=2;
+  sopln();
+}
+
+Pattern 2:- (Inverted Double Sided Triangle)
+===========
+
+n=4
+
+*      *
+**    **
+***  ***
+********
+***  ***
+**    **
+*      *
+
+int space=2*(n-1);
+for(int i=1;i<=2*n-1;i++)
+{
+   int stars=i;
+   if(i>n) stars=2*n-i;
+   for(int j=1;j<=stars;j++)
+      {
+        sop("*");
+      }
+   for(int j=1;j<=space;j++)
+      {
+        sop(" ");
+      }
+   for(int j=1;j<=stars;j++)
+      {
+        sop("*");
+      }
+   if(i<n)space+=2;
+   else space-=2;
+   sopln();
+}
+
+This Pattern is also said to butterfly pattern.
+
+Pattern 3:-  (Hollow Square)
+===========
+
+n=4
+
+****
+*  *
+*  *
+****
+
+for(int i=1;i<=n;i++)
+{
+  for(int j=1;j<=n;j++)
+     {
+       if(i==0||j==0||i==n-1||j==n-1)
+         {
+           sop("*");
+         }
+       else
+         {
+           sop(" ");
+         }
+      }
+   sopln();
+}
+
+Pattern 4:- (Number Pattern)
+===========
+
+n=4
+
+4 4 4 4 4 4 4 
+4 3 3 3 3 3 4
+4 3 2 2 2 3 4
+4 3 2 1 2 3 4
+4 3 2 2 2 3 4
+4 3 3 3 3 3 4
+4 4 4 4 4 4 4
+
+for(int i=1;i<=2*n-1;i++)
+{
+   for(int j=1;j<=2*n-1;j++)
+      {
+       int top=i,left=j,right=(2*n-1)-j,bottom=(2*n-1)-i;
+       int mindist=Math.min(Math.min(top,left),Math.min(right,bottom));
+       sop(n-mindist);
+      }
+   sopln();
+}
+
+These are the patterns used to develop logic thinking for begineers in DSA.
+
