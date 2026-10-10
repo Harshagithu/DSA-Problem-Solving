@@ -1,0 +1,222 @@
+
+Count Digits :-
+===============
+
+int func(int n)
+{
+   int count=0;
+   while(n>0)
+    {
+       count++;
+       n/=10;
+    }
+   return count;
+}
+
+Time Complexity :- O(log10n)
+
+
+Reverse a Number :-
+====================
+
+int func(int n)
+{
+   int sum=0;
+   while(n>0)
+    {
+       int r=n%10;
+       sum=(sum*10)+r;
+       n/=10;
+    }
+   return sum;
+}
+
+Time Complexity :- O(log10n)
+
+Check Palindrome :-
+===================
+
+bool func(int n)
+{
+   int sum=0;
+   int temp=n;
+   while(n>0)
+    {
+       int r=n%10;
+       sum=(sum*10)+r;
+       n/=10;
+    }
+   return sum==temp;
+}
+
+Time Complexity :- O(log10n)
+
+Check Armstrong :-
+==================
+
+bool func(int n)
+{
+   int sum=0;
+   int temp=n;
+   while(n>0)
+    {
+       int r=n%10;
+       sum=sum+(r*r*r);
+       n/=10;
+    }
+   return sum==temp;
+}
+
+Time Complexity :- O(log10n)
+
+Print Divisors :-
+=================
+
+Brute Force :-
+==============
+
+void func(int n)
+{
+  for(int i=1;i<=n;i++)
+     {
+       if(n%i==0)
+         {
+           sop(i+" ");
+         }
+      }
+}
+
+Time Complexity :- O(n)
+
+Optimal Approach :-
+===================
+
+void func(int n)
+{
+  ArrayList<Integer> arr=new ArrayList<Integer>();
+  for(int i=1;i*i<=n;i++)
+     {
+        if(n%i==0)
+          {
+            arr.add(i);
+            if(n/i!=i)
+              {
+                 arr.add(n/i);
+              }
+          }
+     }
+  Collections.sort(arr);
+  for(int i:arr)
+     {
+        sop(i);
+     }
+}
+
+Time Complexity :-  O(sqrt(n)) + O(mlogm)+O(m) where, n is input size and m is number of factors
+==================
+
+Check Prime :-
+==============
+
+Brute Force :-
+==============
+
+bool func(int n)
+{
+  int cnt=0;
+  for(int i=1;i<=n;i++)
+     {
+       if(n%i==0)
+         {
+           cnt++;
+         }
+      }
+   return cnt==2;
+}
+
+Time Complexity :- O(n)
+
+Optimal Approach :-
+===================
+
+bool func(int n)
+{
+  int cnt=0;
+  for(int i=1;i*i<=n;i++)
+     {
+        if(n%i==0)
+          {
+            cnt++;
+            if(n/i!=i)
+              {
+                 cnt++:
+              }
+          }
+     }
+  return cnt==2;
+}
+
+Time Complexity :- O(sqrt(n))
+
+GCD / HCF :-
+============
+
+Brute Force Approach :-
+=======================
+
+int func(int n1,int n2)
+{
+   int gcd=1;
+   for(int i=1;i<=Math.min(n1,n2);i++)
+      {
+         if(n1%i=0&&n2%i==0)
+           {
+              gcd=i;
+           }
+      }
+    return gcd;
+}
+
+Time Complexity :- O(min(n1,n2))
+
+Better Approach :-
+==================
+
+int func(int n1,int n2)
+{
+   int gcd=1;
+   for(int i=Math.min(n1,n2);i>0;i--)
+      {
+         if(n1%i=0&&n2%i==0)
+           {
+              gcd=i;
+              break;
+           }
+      }
+    return gcd;
+}
+
+Time Complexity :- O(min(n1,n2)) Because, in worst case it should move to i variable upto 1.
+
+Optimal Approach :-
+===================
+
+Euclidean Algorithm :-
+======================
+
+int func(int n1,int n2)
+{
+   while(n1>0&&n2>0)
+       {
+          if(n1>n2) n1%=n2;
+          else n2%=n1;
+       }
+   if(n1==0) return n2;
+   return n1;
+}
+
+Time Complexity :- O(log(min(a,b)))
+==================
+
+These are the problems needed to understand in basic math logical thinking for beginners.
+
