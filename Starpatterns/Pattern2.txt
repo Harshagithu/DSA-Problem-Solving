@@ -1,0 +1,86 @@
+
+Pattern 1:- (Binary Triangle)
+===========
+
+n=4
+
+1
+0 1
+1 0 1
+0 1 0 1
+
+int flip=0;
+for(int i=1;i<=n;i++)
+{
+  if(i%2==0)flip=0;
+  else flip=1;
+  for(int j=1;j<=i;j++)
+     {
+         sop(flip);
+         flip=1-flip;
+     }
+  sopln();
+}
+
+Pattern 2:- (Number Crown)
+===========
+
+n=4
+
+1             1
+1 2         2 1
+1 2 3     3 2 1
+1 2 3 4 4 3 2 1
+
+for(int i=1;i<=n;i++)
+{
+  for(int j=1;j<=i;j++)
+     {
+         sop(j);
+     }
+  for(int j=1;j<=2*(n-i);j++)
+     {
+         sop(" ");
+     }
+ for(int j=1;j<=i;j++)
+     {
+         sop(i-j+1);
+     }
+ sopln();
+}
+
+Pattern 3:- (Consecutive Number Triangle)
+===========
+n=4
+
+1
+2 3
+4 5 6
+7 8 9 10
+
+int num=1;
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=i;j++)
+      {
+        sop(num+" ");
+        num+=1;
+      }
+   sopln();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
