@@ -1,0 +1,115 @@
+
+Pattern 1:- (Character Triangle)
+===========
+
+n=4
+
+A
+A B
+A B C
+A B C D
+
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=i;j++)
+      {
+         sop((char)(j+'A'-1)+" ");
+      }
+   sopln();
+}
+
+Pattern 2:- (Inverted Character Traingle)
+===========
+
+n=4
+
+A B C D
+A B C
+A B
+A
+
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=(n-i+1);j++)
+      {
+         sop((char)(j+'A'-1)+" ");
+      }
+   sopln();
+}
+
+Pattern 3:- (Row Character Triangle)
+===========
+
+n=4
+
+A
+B B
+C C C
+D D D D
+
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=i;j++)
+      {
+         sop((char)(i+'A'-1)+" ");
+      }
+   sopln();
+}
+
+Pattern 4:- (Character Pyramid)
+===========
+
+n=4
+
+      A
+    A B A
+  A B C B A
+A B C D C B A
+
+for(int i=1;i<=n;i++)
+{
+   for(int j=1;j<=(n-i+1);j++)
+      {
+         sop(" ");
+      }
+
+   int c=1;
+   int mid=(2*i-1)/2;
+   for(int j=1;j<=(2*i-1);j++)
+      {
+         sop((char)(c+'A'-1));
+         if(j>mid) c--;
+         else c++;
+      }
+
+   for(int j=1;j<=(n-i+1);j++)
+      {
+         sop(" ");
+      }
+   sopln();
+}
+
+Pattern 5 :- (Inverted Character Pyramid)
+============
+
+n=4
+
+D 
+C D 
+B C D 
+A B C D 
+
+for(int i=1;i<=n;i++)
+{
+   for(int j=n-i+1;j<=n;j++)
+      {
+         sop((char)(j+'A'-1)+" ");
+      }
+   sopln();
+}
+
+
+
+
+
+
