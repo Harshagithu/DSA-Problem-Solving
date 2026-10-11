@@ -1,0 +1,39 @@
+
+Reverse an array :-
+===================
+
+void func(int arr[],int i,int n)
+{
+  if(i>=n/2)return;
+  swap(arr[i],arr[n-i-1]);
+  func(arr,i+1,n);
+}
+
+Time Complexity :- O(n)
+Space Complexity :- O(n)
+
+Palindrome Recursive Check :-
+=============================
+
+bool func(String s,int i,int n)
+{
+  if(i>=n/2) return true;
+  if(s[i]!=s[n-i-1]) return false;
+  return func(s,i+1,n);
+}
+
+Time Complexity :- O(n)
+Space Complexity :- O(n)
+
+Fibonacci number :-
+===================
+
+int fib(int n)
+{
+  if(n<=1) return n;
+  return fib(n-1)+fib(n-2);
+}
+
+Time Complexity :- O(2^n) 
+Space Complexity :- O(n)
+
