@@ -1,0 +1,75 @@
+
+Recursion :-  When a Function call itself until a specified condition is met.
+============ 
+
+If there is no specific condition then the infinite recursion takes place. This process is called stack overflow.
+
+In Recursion, the term "Specified Condition" is called as "Base Condition".
+
+Recursion Tree :-
+=================
+
+To Understand Recursion code flow it is simpler way to represent the tree with function calls.
+
+In the recursion, the computer internally uses stack space as space complexity for the problem.
+
+Ex :-
+======
+
+void func(int i,int n)
+{
+  if(i>n)return;
+  sop("Harsha");
+  func(i+1,n);
+}
+
+Time Complexity :- O(N) where, "N" is the input size.
+Space Complexity :- O(N) 
+
+It internally uses stack space,
+
+In Stack space
+
+| func(4,3) |
+| func(3,3) |
+| func(2,3) |
+| func(1,3) |
+-------------
+
+It takes 4 functions calls in the stack, It should makes approximately N function calls. So, the space complexity is O(N).
+
+two types of recursion 
+1. Parameterized recursion.
+2. Functional recursion.
+
+We will differentiate with example
+
+sum of N natural numbers
+
+parameterized recursion :-
+==========================
+
+void func(int i,int sum)
+{
+  if(i==0)
+    {
+      print(sum);
+      return;
+    }
+  func(i-1,sum+i);
+}
+
+functional recursion :-
+=======================
+
+int func(int n)
+{
+  if(n==0)
+    return 0;
+  return n+func(n-1);
+}
+
+Time Complexity :- O(n)
+Space Complexity :- O(n)
+
+
