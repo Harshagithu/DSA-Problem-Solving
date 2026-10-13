@@ -1,0 +1,115 @@
+
+Subsequence :- A contigous/non-contigous sequence which follows the order.
+==============
+
+Subarray :- A contigous sequence which follows order.
+===========
+
+Recursion code for Subsequence :-
+==================================
+
+void func(int index,int src[],ArrayList<Integer> arr,int n)
+{
+  if(index==n)
+    {
+    for(int i:arr)
+      {
+        sop(i+" ");
+      }
+    return;
+    }
+  arr.add(src[index]);
+  func(index+1,src,arr,n);
+  arr.remove(index);
+  func(index+1,src,arr,n);
+}
+
+Time Complexity :- O(2^n)
+Space Complexity :- O(n)
+
+Print Subsequences Whose Sum is K :-
+====================================
+
+void func(int index,int src[],int sum,int k,int n, ArrayList<Integer> arr)
+{
+  if(index==n)
+    {
+      if(sum==k)
+        {
+          for(int i:arr) sop(i+" ");
+        }
+      return;
+    }
+  
+  arr.add(src[index]);
+  sum+=src[index];
+  
+  func(index+1,src,sum,k,n,arr);
+  
+  arr.remove(index);
+  sum-=src[index];
+  
+  func(index+1,src,sum,k,n,arr);
+}
+
+Time Complexity :- O(2^n)
+Space Complexity :- O(n)
+
+Print Any Subsequence Whose Sum is K :-
+=======================================
+
+bool func(int index,int src[],int sum,int k,int n, ArrayList<Integer> arr)
+{
+  if(index==n)
+    {
+      if(sum==k)
+        {
+          for(int i:arr) sop(i+" ");
+          return true;
+        }
+      return false;
+    }
+  
+  arr.add(src[index]);
+  sum+=src[index];
+  
+  if(func(index+1,src,sum,k,n,arr)==true)return true;
+  
+  arr.remove(index);
+  sum-=src[index];
+  
+  if(func(index+1,src,sum,k,n,arr))return true;
+  
+  return false;
+}
+
+Time Complexity :- O(2^n)
+Space Complexity :- O(n)
+
+Count Subsequences Whose Sum is K :-
+====================================
+
+int func(int index,int src[],int sum,int k,int n)
+{
+  if(index==n)
+    {
+      if(sum==k)
+        {
+          return 1;
+        }
+      return 0;
+    }
+  
+  sum+=src[index];
+  
+  int left=func(index+1,src,sum,k,n);
+  
+  sum-=src[index];
+  
+  int right=func(index+1,src,sum,k,n);
+
+  return left + right;
+}
+
+Time Complexity :- O(2^n)
+Space Complexity :- O(n)
