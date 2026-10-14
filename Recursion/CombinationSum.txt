@@ -1,0 +1,32 @@
+
+Combination Sum I :-
+====================
+
+class Solution {
+    public void solve(int index,int src[],int target,int n,ArrayList<Integer> arr,List<List<Integer>> res)
+    {
+        if(index==n)
+        {
+            if(target==0)
+            {
+                res.add(new ArrayList<>(arr));
+            }
+            return;
+        }
+
+        if(src[index]<=target)
+        {
+            arr.add(src[index]);
+            solve(index,src,target-src[index],n,arr,res);
+            arr.remove(arr.size()-1);
+        }
+        solve(index+1,src,target,n,arr,res);
+    }
+}
+
+Time Complexity :- O(2^t) Where, "t" is target
+Space Complexity :- O(t)
+
+Combination Sum II :-
+=====================
+
