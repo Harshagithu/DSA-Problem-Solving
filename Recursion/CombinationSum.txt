@@ -30,3 +30,32 @@ Space Complexity :- O(t)
 Combination Sum II :-
 =====================
 
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        int n=candidates.length;
+        int index=0;
+        List<List<Integer>> res=new ArrayList<>();
+        solve(index,candidates,n,target,new ArrayList<>(),res);
+        return res;
+    }
+    public void solve(int index,int src[],int n,int target,ArrayList<Integer> arr, List<List<Integer>> res)
+    {
+        if(target==0)
+        {
+            res.add(new ArrayList<>(arr));
+            return;
+        }
+        for(int i=index;i<n;i++)
+        {
+            if(i!=index&&src[i]==src[i-1])continue;
+            if(src[i]>target)break;
+            arr.add(src[i]);
+            solve(i+1,src,n,target-src[i],arr,res);
+            arr.remove(arr.size()-1);
+        }
+    }
+}
+
+Time Complexity :- O(2^n) +O(nlogn)
+Space Complexity :- O(k.x) where, k size is size of the input and x is size of every array list in the list.
