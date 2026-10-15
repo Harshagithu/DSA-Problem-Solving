@@ -1,0 +1,37 @@
+
+Subset Sum I :-
+===============
+
+ public void solve(int index,int arr[],int n,ArrayList<Integer> list,List<List<Integer>> res)
+    {
+        if(index==n)
+        {
+            res.add(new ArrayList<>(list));
+            return;
+        }
+        list.add(arr[index]);
+        solve(index+1,arr,n,list,res);
+        list.remove(list.size()-1);
+        solve(index+1,arr,n,list,res);
+    }
+
+Time Complexity :- O(2^n) * O(t)
+Space Complexity :- O(n)
+
+Subset Sum II :-
+================
+
+public void solve(int index,int nums[],int n,ArrayList<Integer> arr,List<List<Integer>> res)
+    {
+        res.add(new ArrayList<>(arr));
+        for(int i=index;i<n;i++)
+        {
+            if(i>index&&nums[i]==nums[i-1])continue;
+            arr.add(nums[i]);
+            solve(i+1,nums,n,arr,res);
+            arr.remove(arr.size()-1);
+        }
+    }
+
+Time Complexity :- O(2^n) * O(t)
+Space Complexity :- O(n)
