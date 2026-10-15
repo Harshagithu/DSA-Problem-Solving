@@ -1,0 +1,32 @@
+
+code :-
+=======
+
+    public void solve(int index,int nums[],int n,List<List<Integer>> res)
+    {
+        if(index==n)
+        {
+            ArrayList<Integer> arr=new ArrayList<>();
+            for(int i:nums)
+            {
+                arr.add(i);
+            }
+            res.add(new ArrayList<>(arr));
+            return;
+        }
+        for(int i=index;i<n;i++)
+        {
+            swap(index,i,nums);
+            solve(index+1,nums,n,res);
+            swap(index,i,nums);
+        }
+    }
+    public void swap(int i,int j,int nums[])
+    {
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
+    }
+
+Time Complexity :- O(n!) * O(n)
+Space Complexity :- O(n!)
