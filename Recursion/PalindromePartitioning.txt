@@ -1,0 +1,44 @@
+class Solution {
+    public List<List<String>> partition(String s) {
+        List<List<String>> res=new ArrayList<>();
+        int n=s.length();
+        int idx=0;
+        solve(idx,n,s,new ArrayList<>(),res);
+        return res;
+    }
+    public void solve(int index,int n,String s,ArrayList<String> arr,List<List<String>> res)
+    {
+        if(index==n)
+        {
+            res.add(new ArrayList<>(arr));
+            return;
+        }
+        for(int i=index;i<n;i++)
+        {
+            if(isValid(s.substring(index,i+1)))
+            {
+                arr.add(s.substring(index,i+1));
+                solve(i+1,n,s,arr,res);
+                arr.remove(arr.size()-1);
+            }
+        }
+    }
+    public boolean isValid(String str)
+    {
+        int left=0;
+        int right=str.length()-1;
+        while(left<=right)
+        {
+            if(str.charAt(left)!=str.charAt(right))
+            {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
+
+Time Complexity  :- O(2^n * n) where, "n" is size of the input.
+Space Complexity :- O(n)
