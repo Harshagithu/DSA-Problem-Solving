@@ -1,0 +1,52 @@
+
+Input :- [1,1,2,2,3,3,3]
+Output :- 3 
+(Index position of the array after removing the duplicate elements. In the array there 3 uniques values 
+after filling it in the array the index position will finally moves into 3rd index position of the array).
+
+Brute Force :-
+==============
+
+func(arr,n)
+{
+ HashSet<Integer> hs=new HashSet<>();
+ for(int i=0;i<n;i++)
+ {
+  hs.add(arr[i]);
+ }
+ int index=0;
+ for(int i:hs)
+ {
+  arr[index++]=i;
+ }
+ return index+1;
+}
+
+Time Complexity :- O(nlogn) + O(n)
+Space Complexity :- O(n)
+
+Optimal Approach :-
+===================
+
+func(arr,n)
+{
+  int i=0;
+  for(int j=1;j<n;j++)
+  {
+    if(arr[j]!=arr[i])
+    {
+      arr[i++]=arr[j];
+    }
+  }
+ return i+1;
+}
+
+Time Complexity :- O(n)
+Space Complexity :- O(1)
+
+It is guarenteed that the given input array is in sorted order.
+
+
+
+
+
