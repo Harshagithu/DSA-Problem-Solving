@@ -1,0 +1,36 @@
+
+Input :-  arr=[3,2,4,9,1,2,6,7]
+
+Output :-  9
+
+
+Brute Force :-
+==============
+
+func(arr, n)
+{
+  Arrays.sort(arr);
+  return arr[n-1];
+}
+
+Time Complexity :- O(nlogn)
+Space Complexity :- O(1)
+
+Optimal Approach :-
+===================
+
+func(arr,n)
+{
+  int largest=arr[0];
+  for(int i=1;i<n;i++)
+  {
+    if(arr[i]>largest)
+      {
+        arr[i]=largest;
+      }
+  }
+ return largest;
+}
+
+Time Complexity :- O(n)
+Space Complexity :- O(1)
