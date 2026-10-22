@@ -1,0 +1,133 @@
+
+Rotate Array By one place left :-
+=================================
+
+Input :- arr = [1,2,3,4,5]
+Output :- arr = [2,3,4,5,1]
+
+Code :-
+=======
+
+func(arr,n)
+{
+  int temp=arr[0];
+  for(int i=1;i<n-1;i++)
+    {
+      arr[i-1]=arr[i];
+    }
+  arr[n-1]=temp;
+}
+
+Time Complexity :- O(n)
+Space Complexity :- O(1)
+
+Rotate Array By k places left :-
+================================
+
+Input :- arr = [1,2,3,4,5], k=3
+Output :- arr = [4,5,1,2,3]
+
+Brute Force :-
+==============
+
+func(arr,n,k)
+{
+  int temp[]=new int[k];
+  for(int i=0;i<k;i++)
+    {
+     temp[i]=arr[i];
+    }
+  for(int i=k;i<n;i++)
+    {
+    arr[i-k]=arr[i];
+    }
+  for(int i=n-k;i<n;i++)
+    {
+    arr[i]=temp[i-k+1];
+    }
+}
+
+Time Complexity :- O(k) + O(n-k) + O(k) = O(n+k)
+Space Complexity :- O(k)
+
+Optimal Approach :-
+===================
+
+func(arr,n,k)
+{
+  reverse(arr,0,k-1)
+  reverse(arr,k,n-1)
+  reverse(arr,0,n-1)
+}
+
+reverse(arr,start,end)
+{
+  while(start<end)
+    {
+      int temp=arr[start];
+      arr[start]=arr[end];
+      arr[end]=temp;
+      start++;
+      end--;
+    }
+}
+
+Time Complexity :- O(k) + O(n-k) + O(n) = O(2n)
+Space Complexity :- O(1)
+
+Rotate Array By k places right :-
+================================
+
+Input :- arr = [1,2,3,4,5], k=3
+Output :- arr = [3,4,5,1,2]
+
+Brute Force :-
+==============
+
+func(arr,n,k)
+{
+  int temp[]=new int[k];
+  for(int i=n-k;i<n;i++)
+    {
+     temp[i-k+1]=arr[i];
+    }
+  for(int i=0;i<n-k;i++)
+    {
+    arr[i+k]=arr[i];
+    }
+  for(int i=0;i<k;i++)
+    {
+    arr[i]=temp[i];
+    }
+}
+
+Time Complexity :- O(k) + O(n-k) + O(k) = O(n+k)
+Space Complexity :- O(k)
+
+Optimal Approach :-
+===================
+
+func(arr,n,k)
+{
+  reverse(arr,0,n-1)
+  reverse(arr,0,k-1)
+  reverse(arr,k,n-1)
+}
+
+reverse(arr,start,end)
+{
+  while(start<end)
+    {
+      int temp=arr[start];
+      arr[start]=arr[end];
+      arr[end]=temp;
+      start++;
+      end--;
+    }
+}
+
+Time Complexity :- O(k) + O(n-k) + O(n) = O(2n)
+Space Complexity :- O(1)
+
+
+
