@@ -1,0 +1,89 @@
+
+Input :- arr1 = [1,1,2,3,4,5] arr2 = [2,3,3,4,6]
+Output :- arr = [1,2,3,4,5,6]
+
+
+Brute Force :-
+==============
+
+func(arr,n)
+{
+ Set<Integer> hs=new HashSet<>();
+ for(int i:arr1)
+ {
+   hs.add(i);
+ }
+ for(int i:arr2)
+ {
+  hs.add(i);
+ }
+ int res[]=new int[hs.size()];
+ int index=0;
+ for(int i:hs)
+ {
+  res[index++]=i;
+ }
+ return res;
+}
+
+Time Complexity :- O(n1logn1) + O(n2logn2) + O(n1+n2)
+Space Complexity :- O(n1+n2) + O(n1+n2)
+
+Optimal Approach :-
+===================
+
+func(nums1,nums2)
+{
+ int n1=nums1.length;
+ int n2=nums2.length;
+ int i=0;
+ int j=0;
+ ArrayList<Integer> res=new ArrayList<>();
+ while(i<n1&&j<n2)
+ {
+   int currentValue;
+   if(nums1[i]<nums2[j])
+   {
+    currentValue=nums1[i];
+    i++;
+   }
+   else if(nums1[i]>nums2[j])
+   {
+    currentValue=nums2[j];
+    j++;
+   }
+  else
+  {
+    currentValue=nums2[j];
+    i++;
+    j++;
+  }
+  if(res.isEmpty()||res.get(res.size()-1)!=currentValue)
+  {
+    res.add(currentValue);
+  }
+ }
+ while(i<n1)
+ {
+   if(res.isEmpty()||res.get(res.size()-1)!=nums1[i])
+  {
+    res.add(currentValue);
+  }
+  i++;
+}
+while(j<n2)
+ {
+   if(res.isEmpty()||res.get(res.size()-1)!=nums2[j])
+  {
+    res.add(currentValue);
+  }
+  j++;
+}
+ return res;
+}
+
+Time Complexity :- O(n1+n2)
+Space Complexity :- O(1)
+
+
+
