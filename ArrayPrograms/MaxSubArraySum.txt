@@ -1,0 +1,104 @@
+
+
+Input :- arr = [-2,-3,4,-1,-2,1,5,-3]
+
+Output :- 7
+
+Brute Force :-
+==============
+
+func(arr,n)
+{
+ int maxSum=Integer.MIN_VALUE;
+ for(int i=0;i<n;i++)
+ {
+  for(int j=i;j<n;j++)
+  {
+   int sum=0;
+   for(int k=i;k<=j;k++)
+   {
+    sum+=arr[k];
+   }
+   maxSum=Math.max(sum,maxSum);
+  }
+ }
+ return maxSum;
+}
+
+Time Complexity :- O(n^3)
+Space Complexity :- O(n^2)
+
+Better Approach :-
+==================
+
+func(arr,n)
+{
+ int maxSum=Integer.MIN_VALUE;
+ for(int i=0;i<n;i++)
+ {
+   int sum=0;
+  for(int j=i;j<n;j++)
+  {
+    sum+=arr[j];
+    maxSum=Math.max(maxSum,sum);
+  }
+}
+return maxSum;
+}
+
+Time Complexity :- O(n^2)
+Space Complexity :- O(1)
+
+Optimal Approach :-
+===================
+
+func(arr,n)
+{
+ int sum=0;
+ int maxSum=Integer.MIN_VALUE;
+ for(int i=0;i<n;i++)
+ {
+   sum+=arr[i];
+   if(sum<0) sum=0;
+   if(sum>maxSum) sum=maxSum;
+ }
+ return maxSum;
+}
+
+Time Complexity :- O(n)
+Space Complexity :- O(1)
+
+If they ask for subarray then
+
+func(arr,n)
+{
+ int sum=0;
+ int maxSum=Integer.MIN_VALUE;
+ int start=-1,ansstart=-1,ansend=-1;
+ for(int i=0;i<n;i++)
+ {
+   if(sum==0)start=i;
+   sum+=arr[i];
+   if(sum<0) sum=0;
+   if(sum>maxSum) 
+   {
+     sum=maxSum;
+     ansstart=start;
+     ansend=i;
+   }
+ }
+ List<Integer> arr=new ArrayList<>();
+ for(int i=ansstart;i<=ansend;i++)
+ {
+   arr.add(arr[i]);
+ }
+ return arr;
+}
+
+Time Complexity :- O(2*n)
+Space Complexity :- O(1)
+
+The above code illustrates the kadane's algorithm which keep tracks the sum of subarray of the array.
+
+
+
