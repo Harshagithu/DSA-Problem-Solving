@@ -74,6 +74,8 @@ func(arr,n)
 return count>0?ele:-1;
 }
 
+This code illustrates the moore's voting algorithm where the result will decide based on the counter variable.
+
 Time Complexity :- O(n)
 Space Complexity :- O(1)
 
