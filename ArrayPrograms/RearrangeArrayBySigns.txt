@@ -1,0 +1,118 @@
+
+Input :- arr = [3,1,-2,-5,2,-4]
+
+Output :- arr = [3,-2,1,-5,2,-4]
+
+Brute Force :-
+==============
+
+rearrangeArray(int[] nums) {
+        int n=nums.length;
+        List<Integer> pos=new ArrayList<>();
+        List<Integer> neg=new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]>0)
+            {
+                pos.add(nums[i]);
+            }
+            else if(nums[i]<0)
+            {
+                neg.add(nums[i]);
+            }
+        }
+        for(int i=0;i<n/2;i++)
+        {
+            nums[2*i]=pos.get(i);
+            nums[2*i+1]=neg.get(i);
+        }
+        return nums;
+    }
+
+Time Complexity :- O(n) + O(n/2)
+Space Complexity :- O(n)
+
+
+Another Problem :-
+==================
+
+In this problem, we can see unequal amount of positive and negative numbers.
+
+rearrangeArray(int[] nums) {
+        int n=nums.length;
+        List<Integer> pos=new ArrayList<>();
+        List<Integer> neg=new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]>0)
+            {
+                pos.add(nums[i]);
+            }
+            else if(nums[i]<0)
+            {
+                neg.add(nums[i]);
+            }
+        }
+
+        int i=0;
+        int j=0;
+        int idx=0;
+  
+        while(i<pos.size()&&j<neg.size())
+        {
+          nums[idx++]=pos.get(i);
+          nums[idx++]=neg.get(j);
+          i++;
+          j++;
+        }
+
+        while(i<pos.size())
+        {
+          nums[idx++]=pos.get(i);
+          i++;
+        }
+
+        while(j<neg.size())
+        {
+          nums[idx++]=neg.get(j);
+          j++;
+        }
+  
+        return nums;
+    }
+
+Time Complexity :- O(2*n)
+Space Complexity :- O(n)
+
+Optimal Approach :-
+===================
+
+rearrangeArray(int[] nums) {
+        int n=nums.length;
+        int pos=0,neg=1;
+        int ans[]=new int[n];
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]>0)
+            {
+                ans[pos]=nums[i];
+                pos=pos+2;
+            }
+            else if(nums[i]<0)
+            {
+                ans[neg]=nums[i];
+                neg=neg+2;
+            }
+        }
+        return ans;
+
+  Time Complexity :- O(n)
+  Space Complexity :- O(n)
+
+
+
+
+
+
+  
+  
