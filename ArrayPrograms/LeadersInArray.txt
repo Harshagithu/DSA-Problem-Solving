@@ -1,0 +1,55 @@
+
+Input :- arr = [10,22,12,3,0,6]
+
+Output :- arr = [22,12,6]
+
+Brute Force :-
+==============
+
+func(arr,n)
+{
+ List<Integer> arr=new ArrayList<>();
+ for(int i=0;i<n;i++)
+ {
+  boolean leader=true;
+  for(int j=i+1;j<n;j++)
+  {
+   if(arr[j]>arr[i])
+   {
+     leader=false;
+     break;
+   }
+  }
+  if(leader) arr.add(arr[i]);
+ }
+ return arr;
+}
+
+Time Complexity :- O(n^2)
+Space Complexity :- O(n)
+
+Optimal Approach :-
+===================
+
+func(arr,n)
+{
+ List<Integer> arr-new ArrayList<>();
+ int maxi=Integer.MIN_VALUE;
+ for(int i=n-1;i>=0;i--)
+ {
+  if(arr[i]>max)
+  {
+    arr.add(arr[i]);
+    max=arr[i];
+  }
+}
+return arr;
+}
+
+Time Complexity :- O(n)
+Space Complexity :- O(n)
+
+
+
+
+
