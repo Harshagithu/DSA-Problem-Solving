@@ -1,0 +1,134 @@
+
+Input :- n = 5
+
+Output :-
+
+       1
+     1   1
+    1  2   1
+  1  3   3   1
+1  4   6   4   1
+
+arr = [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+
+Three Ways of problem asked in interviews :-
+
+1. Find the nth row and rth col in the pascal traingle
+   for example row = 5 col = 3 then the answer is 6 which is 5th row and 3rd column
+
+To find any value in the pascal triangle we use formula 
+
+   ncr = n!/(n-r)!*r!
+
+Brute Force :-
+==============
+
+To find factorial for every thing in the formula
+
+Time Complexity :- O(n) + O(n-r) + O(r) = O(n^2)
+Space Complexity :- O(1)
+
+Optimal Approach :-
+===================
+
+func(row,col)
+{
+ int ans=1;
+ for(int i=0;i<col;i++)
+ {
+   ans=ans*(row-i);
+   ans=ans/(i+1);
+ }
+ return ans;
+}
+
+Time Complexity :- O(col)
+Space Complexity :- O(1)
+
+2. Finding the nth row of pascal traingle
+   for example, if the given row is 5 then the answer is 1 4 6 4 1
+
+Brute Force :-
+==============
+
+func(row)
+{
+  for(int i=0;i<=row;i++)
+  {
+    nCr(row,i);
+  }
+}
+
+Time Complexity :- O(n^3)
+Space Complexity :- O(1)
+
+Optimal Approach :-
+===================
+
+func(row)
+{
+  int ans=1;
+  print(ans);
+  for(int i=1;i<row;i++)
+  {
+    ans=ans*(n-i);
+    ans=ans/i;
+    print(ans);
+  }
+}
+
+Time Complexity :- O(n)
+Space Complexity :- O(1)
+
+3. print the entire pascal triangle
+
+Optimal Approach :-
+===================
+
+findRow(row)
+{
+  List<Long> res=new ArrayList<>();
+  long ans=1;
+  res.add(ans);
+  for(int i=1;i<row;i++)
+  {
+    ans=ans*(n-i);
+    ans=ans/i;
+    res.add(ans);
+  }
+}
+
+func(row)
+{
+ List<List<Long>> ans=new ArrayList<>();
+ for(int i=1;i<=row;i++)
+ {
+  ans.add(findRow(i));
+ }
+ return ans;
+}
+
+Time Complexity :- O(n*n) = O(n^2)
+Space Complexity :- O(1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
