@@ -1,0 +1,137 @@
+
+
+Input :- arr1 = [2,1,6,7] arr2 = [0,3,9,5,8]
+
+Output :- arr1 = [0,1,2,3] arr2 = [5,6,7,8,9]
+
+Brute Force :-
+==============
+
+func(arr1,arr2,m,n)
+{
+ int arr3[]=new int[m+n];
+ int index=0;
+ int i=0,j=0;
+ while(i<m&&j<n)
+ {
+  if(arr1[i]<=arr2[j])
+  {
+   arr3[index++]=arr1[i++];
+  }
+  else
+  {
+   arr3[index++]=arr2[j++];
+  }
+ }
+ while(i<m)
+ {
+  arr3[index++]=arr1[i++];
+ }
+ while(j<n)
+ {
+  arr3[index++]=arr2[j++];
+ }
+}
+index=0;
+for(int i=0;i<m+n;i++)
+{
+ if(i<m) arr1[i]=arr3[index++];
+ else arr2[i-m]=arr3[index++];
+}
+}
+
+Time Complexity :- O(m+n) + O(m+n)
+Space Complexity :- O(m+n)
+
+Optimal Approach 1 :-
+=====================
+
+func(arr1,arr2,m,n)
+{
+ int i=m-1,j=0;
+ while(i>=0&&j<n-1)
+ {
+   if(arr1[i]>arr2[j])
+   {
+     int temp=arr1[i];
+     arr1[i]=arr2[j];
+     arr2[j]=temp;
+     i--;
+     j++;
+   }
+   else
+   {
+    break;
+   }
+}
+Arrays.sort(arr1);
+Arrays.sort(arr2);
+}
+
+Time Complexity :- O(min(m,n)) + O(mlogm) + O(nlogn)
+Space Complexity :- O(1)
+
+Optimal Approach 2 :-
+=====================
+
+func(arr1,arr2,m,n)
+{
+  int len=m+n;
+  int gap=(len/2)+(len%2);
+  while(gap>0)
+  {
+    int left=0;
+    int right=left+gap;
+    while(right<len)
+    {
+      if(left<m&&right>=m)
+      {
+        if(arr1[left]>arr2[right-m])
+        {
+           swap(arr1,arr2,left,right-m);
+        }
+      }
+      else if(left<m&&right<m)
+      {
+        if(arr1[left]>arr1[right])
+        {
+          swap(arr1,arr1,left,right);
+        }
+      }
+      else
+      {
+        if(arr2[left-m]>arr2[right-m])
+        {
+         swap(arr2,arr2,left-m,right-m);
+        }
+      }
+      left++;
+      right++;
+    }
+    if(gap==1)break;
+    gap=(gap/2)+(gap%2);
+  }
+}
+
+Time Complexity :- O((m+n)*log2(m+n))
+Space Complexity :- O(1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
