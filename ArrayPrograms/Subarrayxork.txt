@@ -1,0 +1,88 @@
+
+Input :- arr = [4,2,2,6,4] k=6
+
+Output :- 4
+
+Brute Force :-
+==============
+
+func(arr,n)
+{
+ int count=0;
+ for(int i=0;i<n;i++)
+ {
+  for(int j=i;j<n;j++)
+  {
+   int xor=0;
+   for(int k=i;k<=j;k++)
+   {
+     xor^=arr[i];
+   }
+   if(xor==k)
+   {
+     count=count+1;
+   }
+  }
+}
+return count;
+}
+
+Time Complexity :- O(n^3)
+Space Complexity :- O(1)
+
+Better Approach :-
+==================
+
+func(arr,n)
+{
+ int count=0;
+ for(int i=0;i<n;i++)
+ {
+  for(int j=i;j<n;j++)
+  {
+   int xor=0;
+   xor^=arr[i];
+   if(xor==k)
+   {
+     count=count+1;
+   }
+  }
+}
+return count;
+}
+
+Time Complexity :- O(n^2)
+Space Complexity :- O(1)
+
+Optimal Approach :-
+===================
+
+func(arr,n)
+{
+ int count=0;
+ Map<Integer,Integer> hm=new HashMap<>();
+ hm.put(0,1);
+ int xor=0;
+ for(int i=0;i<n;i++)
+ {
+  xor^=arr[i];
+  int rem=xor^k;
+  if(hm.containsKey(rem))
+  {
+    count=count+hm.get(rem);
+  }
+  hm.put(xor,hm.getOrDefault(xor,0)+1);
+ }
+ return count;
+}
+
+Time Complexity :- O(n)
+Space Complexity :- O(n)
+
+
+
+
+
+
+
+
