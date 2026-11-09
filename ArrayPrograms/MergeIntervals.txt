@@ -1,0 +1,59 @@
+
+Input :- Intervals = [[1,3],[2,4],[3,6],[8,9],[8,10],[9,11],[15,18],[16,17]]
+
+Output :- Intervals = [[1,6],[8,11],[15,18]]
+
+Brute Force :-
+==============
+
+int[][] merge(int[][] intervals) {
+        int n=intervals.length;
+        Arrays.sort(intervals,(a,b)->a[0]-b[0]);
+        List<int[]> arr=new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            int start=intervals[i][0];
+            int end=intervals[i][1];
+            for(int j=i+1;j<n;j++)
+            {
+                if(end>=intervals[j][0])
+                {
+                    end=Math.max(end,intervals[j][1]);
+                    i=j;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            arr.add(new int[]{start,end});
+        }
+        return arr.toArray(new int[arr.size()][]);
+    }
+
+Time Complexity :- O(nlogn) + O(2*n)
+Space Complexity :- O(n)
+
+Optimal Approach :-
+===================
+
+int[][] merge(int[][] intervals) {
+        int n=intervals.length;
+        Arrays.sort(intervals,(a,b)->a[0]-b[0]);
+        List<int[]> arr=new ArrayList<>();
+        for(int i=0;i<n;i++)
+        {
+            if(arr.isEmpty()||arr.get(arr.size()-1)[1]<intervals[i][0])
+            {
+                arr.add(intervals[i]);
+            }
+            else
+            {
+                arr.get(arr.size()-1)[1]=Math.max(arr.get(arr.size()-1)[1],intervals[i][1]);
+            }
+        }
+        return arr.toArray(new int[arr.size()][]);
+    }
+
+Time Complexity :- O(nlogn) + O(n)
+Space Complexity :- O(n)
