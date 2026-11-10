@@ -88,7 +88,7 @@ func(arr,n)
   val2 = val2/val; 
   long repeating = (val1+val2)/2;
   long missing = val2-repeating;
-  return new int[]{(int)val1,(int)val2};
+  return new int[]{(int)repeating,(int)missing};
 }
 
 Time Complexity :- O(n)
