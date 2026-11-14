@@ -1,0 +1,71 @@
+
+Input :- arr = [2,4,5,8,11,14] , target = 8
+
+Output :- 3 (index position of the target)
+
+Iterative Approach :-
+=====================
+
+func(arr,n,target)
+{
+ int low=0,high=n-1;
+ while(low<=high)
+ {
+  int mid=(low+high)/2;
+  if(arr[mid]==target)
+  {
+    return mid;
+  }
+  else if(target>arr[mid])
+  {
+   low=mid+1;
+  }
+  else
+  {
+   high=mid-1;
+  }
+ }
+ return -1;
+}
+
+recursive Approach :-
+=====================
+
+func(arr,target,low,high)
+{
+ if(low>high) return -1;
+ int mid=(low+high)/2;
+ if(arr[mid]==target)
+ {
+  return mid;
+ }
+ else if(arr[mid]<target)
+ {
+  return func(arr,target,mid+1,high);
+ }
+ return func(arr,target,low,mid-1);
+}
+
+solve(arr,n,target)
+{
+ return func(arr,target,0,arr.length-1);
+
+Time Complexity :- O(log2n)
+Space Complexity :- O(1)
+
+Note :-
+=======
+
+Suppose if the given constraints are having Integer data type's maximum value at that time calculating mid give overflow
+In the formula, we are adding both maximums so it leads to overflow problem.
+Solution is to use formula, mid = low + (high-low)/2;
+So subtracting maximums give zero and by adding one maximum value gives as the mid value using the formula.
+
+
+
+
+
+
+
+
+
