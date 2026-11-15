@@ -1,0 +1,53 @@
+
+
+Input :- [1,2,3,6,7,9,10,11] target = 8
+
+Output :- {7,9} floor value of 8 is 7 which is <= 8 and ceil value of 8 is 9 which is >=8.
+
+ceilSearch(arr,n,target)
+{
+ int low=0,high=n-1;
+ int ans=-1;
+ while(low<=high)
+ {
+   int mid=(low+high)/2;
+   if(arr[mid]>=target)
+   {
+     ans=arr[mid];
+     low=mid+1;
+   }
+   else
+   {
+     high=mid-1;
+   }
+ }
+ return ans;
+}
+
+Time Complexity :- O(log2n)
+Space Complexity :- O(1)
+
+
+floorSearch(arr,n,target)
+{
+ int low=0,high=n-1;
+ int ans=-1;
+ while(low<=high)
+ {
+   int mid=(low+high)/2;
+   if(arr[mid]<=target)
+   {
+     ans=arr[mid];
+     high=mid+1;
+   }
+   else
+   {
+     low=mid+1;
+   }
+ }
+ return ans;
+}
+
+Time Complexity :- O(log2n)
+Space Complexity :- O(1)
+  
