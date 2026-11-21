@@ -1,0 +1,91 @@
+
+Input :- piles = [3,6,7,11], h = 8
+
+Output :- 4
+
+Brute Force :-
+==============
+
+minEatingSpeed(int[] piles, int h) {
+        int n=piles.length;
+        int maxi=Integer.MIN_VALUE;
+        for(int i:piles)
+        {
+            maxi=Math.max(maxi,i);
+        }
+        for(int i=1;i<=maxi;i++)
+        {
+            int totalhours=findHours(piles,n,i);
+            if(totalhours<=h)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public int findHours(int arr[],int n,int freq)
+    {
+        int totalhrs=0;
+        for(int i=0;i<n;i++)
+        {
+            totalhrs+=Math.ceil((double)arr[i]/(double)freq);
+        }
+        return totalhrs;
+    }
+
+Time Complexity :- O(max(piles)*n) + O(n)
+Space Complexity :- O(1)
+
+
+Optimal Approach :-
+===================
+
+int minEatingSpeed(int[] piles, int h) {
+        int n=piles.length;
+        int maxi=Integer.MIN_VALUE;
+        for(int i:piles)
+        {
+            maxi=Math.max(maxi,i);
+        }
+        int low=1,high=maxi;
+        int ans=-1;
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            int totalhours=findHours(piles,n,mid);
+            if(totalhours<=h)
+            {
+                ans=mid;
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        return ans;
+    }
+    public int findHours(int arr[],int n,int freq)
+    {
+        int totalhrs=0;
+        for(int i=0;i<n;i++)
+        {
+            totalhrs+=Math.ceil((double)arr[i]/(double)freq);
+        }
+        return totalhrs;
+    }
+
+Time Complexity :- O(log2max(piles)*n) + O(n)
+Space Complexity :- O(1)
+
+
+
+
+
+
+
+
+
+
+
+
