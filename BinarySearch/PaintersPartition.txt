@@ -1,0 +1,104 @@
+
+Input :- arr[] = [5, 10, 30, 20, 15], k = 3
+
+Output :- 35
+
+Explanation :- The optimal allocation of boards among 3 painters is - 
+Painter 1 -> [5, 10] → time = 15
+Painter 2 -> [30] → time = 30
+Painter 3 -> [20, 15] → time = 35
+Job will be done when all painters finish i.e. at time = max(15, 30, 35) = 35
+
+Brute Force :-
+==============
+
+int findPaints(int arr[],int n,int maxBoard)
+        {
+            int pCount=1,board=arr[0];
+            for(int i=1;i<n;i++)
+            {
+                if(board+arr[i]<=maxBoard)
+                {
+                    board=board+arr[i];
+                }
+                else
+                {
+                    pCount=pCount+1;
+                    board=arr[i];
+                }
+            }
+            return pCount;
+        }
+    public int minTime(int[] arr, int k) {
+        int n=arr.length;
+            if(n<k)return -1;
+            int maxi=Integer.MIN_VALUE;
+            int sum=0;
+            for(int i=0;i<n;i++)
+            {
+                maxi=Math.max(maxi,arr[i]);
+                sum+=arr[i];
+            }
+            for(int i=maxi;i<=sum;i++)
+            {
+                int pStudents=findPaints(arr,n,i);
+                if(pStudents<=k)
+                {
+                    return i;
+                }
+            }
+            return -1;
+    }
+
+Time Complexity :- O((sum-max+1)*n)
+Space Complexity :- O(1)
+
+Optimal Approach :-
+===================
+
+int findPaints(int arr[],int n,int maxBoard)
+        {
+            int pCount=1,board=arr[0];
+            for(int i=1;i<n;i++)
+            {
+                if(board+arr[i]<=maxBoard)
+                {
+                    board=board+arr[i];
+                }
+                else
+                {
+                    pCount=pCount+1;
+                    board=arr[i];
+                }
+            }
+            return pCount;
+        }
+    public int minTime(int[] arr, int k) {
+        int n=arr.length;
+            if(n<k)return -1;
+            int maxi=Integer.MIN_VALUE;
+            int sum=0;
+            for(int i=0;i<n;i++)
+            {
+                maxi=Math.max(maxi,arr[i]);
+                sum+=arr[i];
+            }
+            int low=maxi,high=sum;
+            while(low<=high)
+            {
+                int mid=(low+high)/2;
+                int pStudents=findPaints(arr,n,mid);
+                if(pStudents<=k)
+                {
+                    high=mid-1;
+                }
+                else
+                {
+                    low=mid+1;
+                }
+            }
+            return low;
+    }
+
+Time Complexity :- O(log2(sum-max+1)*n)
+Space Complexity :- O(1)
