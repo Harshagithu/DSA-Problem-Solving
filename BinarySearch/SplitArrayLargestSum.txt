@@ -1,0 +1,121 @@
+
+Input :- nums = [7,2,5,10,8], k = 2
+
+Output :- 18
+
+Explanation :- There are four ways to split nums into two subarrays.
+The best way is to split it into [7,2,5] and [10,8], where the largest sum among the two subarrays is only 18.
+
+Brute Force :-
+===============
+int splitArray(int[] nums, int k) {
+        int n=nums.length;
+        int maxi=Integer.MIN_VALUE,sum=0;
+        for(int i=0;i<n;i++)
+        {
+            maxi=Math.max(maxi,nums[i]);
+            sum+=nums[i];
+        }
+        for(int i=maxi;i<=sum;i++)
+        {
+            int noSplits=findSplits(nums,n,i);
+            if(noSplits<=k)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public int findSplits(int nums[],int n,int maxSum)
+    {
+        int splitCount=1,sum=nums[0];
+        for(int i=1;i<n;i++)
+        {
+            if(sum+nums[i]<=maxSum)
+            {
+                sum=sum+nums[i];
+            }
+            else
+            {
+                splitCount=splitCount+1;
+                sum=nums[i];
+            }
+        }
+        return splitCount;
+    }
+
+Time Complexity :- O((sum-max+1)*n)
+Space Complexity :- O(1)
+
+Optimal Approach :-
+===================
+
+int splitArray(int[] nums, int k) {
+        int n=nums.length;
+        int maxi=Integer.MIN_VALUE,sum=0;
+        for(int i=0;i<n;i++)
+        {
+            maxi=Math.max(maxi,nums[i]);
+            sum+=nums[i];
+        }
+        int low=maxi,high=sum;
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            int noSplits=findSplits(nums,n,mid);
+            if(noSplits<=k)
+            {
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        return low;
+    }
+    public int findSplits(int nums[],int n,int maxSum)
+    {
+        int splitCount=1,sum=nums[0];
+        for(int i=1;i<n;i++)
+        {
+            if(sum+nums[i]<=maxSum)
+            {
+                sum=sum+nums[i];
+            }
+            else
+            {
+                splitCount=splitCount+1;
+                sum=nums[i];
+            }
+        }
+        return splitCount;
+    }
+
+Time Complexity :- O(log2(sum-max+1)*n)
+Space Complexity :- O(1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
