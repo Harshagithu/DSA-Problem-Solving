@@ -1,0 +1,104 @@
+
+Input :- arr[] = [12, 34, 67, 90], k = 2
+
+Output :- 113
+
+Explanation :- Allocation can be done in following ways:
+=> [12] and [34, 67, 90] Maximum Pages = 191
+=> [12, 34] and [67, 90] Maximum Pages = 157
+=> [12, 34, 67] and [90] Maximum Pages = 113.
+The third combination has the minimum pages assigned to a student which is 113.
+
+Brute Force :-
+==============
+
+int findPages(int[] arr, int k) {
+        int n=arr.length;
+        if(n<k)return -1;
+        int maxi=Integer.MIN_VALUE;
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            maxi=Math.max(maxi,arr[i]);
+            sum+=arr[i];
+        }
+        for(int i=maxi;i<=sum;i++)
+        {
+            int noStudents=findStudents(arr,n,i);
+            if(noStudents<=k)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public int findStudents(int arr[],int n,int maxPages)
+    {
+        int stuCount=1,pages=arr[0];
+        for(int i=1;i<n;i++)
+        {
+            if(pages+arr[i]<=maxPages)
+            {
+                pages=pages+arr[i];
+            }
+            else
+            {
+                stuCount=stuCount+1;
+                pages=arr[i];
+            }
+        }
+        return stuCount;
+    }
+
+Time Complexity :- O((sum-max+1)*n)
+Space Complexity :- O(1)
+
+Optimal Approach :-
+===================
+
+int findPages(int[] arr, int k) {
+        int n=arr.length;
+        if(n<k)return -1;
+        int maxi=Integer.MIN_VALUE;
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            maxi=Math.max(maxi,arr[i]);
+            sum+=arr[i];
+        }
+        int low=maxi,high=sum;
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;
+            int noStudents=findStudents(arr,n,mid);
+            if(noStudents<=k)
+            {
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        return low;
+    }
+    public int findStudents(int arr[],int n,int maxPages)
+    {
+        int stuCount=1,pages=arr[0];
+        for(int i=1;i<n;i++)
+        {
+            if(pages+arr[i]<=maxPages)
+            {
+                pages=pages+arr[i];
+            }
+            else
+            {
+                stuCount=stuCount+1;
+                pages=arr[i];
+            }
+        }
+        return stuCount;
+    }
+
+Time Complexity :- O(log2(sum-max+1)*n)
+Space Complexity :- O(1)
