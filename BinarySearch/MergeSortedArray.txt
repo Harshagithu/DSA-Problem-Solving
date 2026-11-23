@@ -1,0 +1,102 @@
+
+
+Example 1 :-
+Input :- nums1 = [1,3], nums2 = [2]
+
+Output :- 2.00000
+
+Explanation :- merged array = [1,2,3] and median is 2.
+
+Example 2:-
+Input :- nums1 = [1,2], nums2 = [3,4]
+
+Output :- 2.50000
+
+Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
+
+Brute Force Approach :-
+=======================
+
+double findMedianSortedArrays(int[] a, int[] b) {
+       int n1=a.length,n2=b.length;
+       int n=n1+n2;
+       int c[]=new int[n];
+       int i=0,j=0,k=0;
+       while(i<n1&&j<n2)
+       {
+        if(a[i]<b[j])
+        {
+            c[k++]=a[i++];
+        }
+        else
+        {
+            c[k++]=b[j++];
+        }
+       }
+       while(i<n1)
+       {
+        c[k++]=a[i++];
+       }
+       while(j<n2)
+       {
+        c[k++]=b[j++];
+       }
+       if(n%2==1)
+       {
+        return c[n/2];
+       }
+       return (double)((double)(c[n/2]+c[n/2-1])/2);
+    }
+
+Better Approach :-
+==================
+
+double findMedianSortedArrays(int[] a, int[] b) {
+       int n1=a.length,n2=b.length;
+       int n=n1+n2;
+       int idx1=n/2;
+       int idx2=idx1-1;
+       int i=0,j=0;
+       int count=0;
+       int eleidx1=0,eleidx2=0;
+       while(i<n1&&j<n2)
+       {
+        if(a[i]<b[j])
+        {
+            if(count==idx1)eleidx1=a[i];
+            if(count==idx2)eleidx2=a[i];
+            count++;
+            i++;
+        }
+        else
+        {
+            if(count==idx1)eleidx1=b[j];
+            if(count==idx2)eleidx2=b[j];
+            count++;
+            j++;
+        }
+       }
+       while(i<n1)
+       {
+        if(count==idx1)eleidx1=a[i];
+        if(count==idx2)eleidx2=a[i];
+        count++;
+        i++;
+       }
+       while(j<n2)
+       {
+        if(count==idx1)eleidx1=b[j];
+        if(count==idx2)eleidx2=b[j];
+        count++;
+        j++;
+       }
+       if(n%2==1)
+       {
+        return eleidx1;
+       }
+       return (double)((double)(eleidx1+eleidx2)/2);
+    }
+
+Optimal Approach :-
+===================
+
