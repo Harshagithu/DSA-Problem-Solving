@@ -1,0 +1,51 @@
+
+Input :- stations[] = [1, 2, 3, 4, 5], k = 2
+
+Output :- 1.00
+
+Explanation :- Since all gaps are already equal (1 unit each), adding extra stations in between does not reduce the maximum distance.
+
+Input :- stations[] = [3, 6, 12, 19, 33], k = 3
+
+Output :- 6.00 
+
+Explanation :- The largest gap is 14 (between 19 and 33). Adding 2 stations there splits it into approx 4.67. The next largest gap is 7 (between 12 and 19). Adding 1 station splits it into 3.5. Now the maximum gap left is 6.
+
+
+Brute Force :-
+==============
+
+class Solution {
+    public double minMaxDist(int[] stations, int k) {
+        int n=stations.length;
+        int howMany[]=new int[n-1];
+        for(int i=1;i<=k;i++)
+        {
+            double maxDist=-1.0;
+            int maxIndex=-1;
+            for(int j=0;j<n-1;j++)
+            {
+                double dist=stations[j+1]-stations[j];
+                double length=dist/(double)(howMany[j]+1);
+                if(length>maxDist)
+                {
+                    maxDist=length;
+                    maxIndex=j;
+                }
+            }
+            howMany[maxIndex]++;
+        }
+        double ans=-1.0;
+        for(int i=0;i<n-1;i++)
+        {
+            double gap=stations[i+1]-stations[i];
+            double length=gap/(double)(howMany[i]+1);
+            ans=Math.max(ans,length);
+        }
+        return ans;
+    }
+}
+
+Time Complexity :- O(k*n) where k is number of stations to add and n is number of given stations.
+Space Complexity :- O(n-1)
+
