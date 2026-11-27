@@ -49,3 +49,79 @@ class Solution {
 Time Complexity :- O(k*n) where k is number of stations to add and n is number of given stations.
 Space Complexity :- O(n-1)
 
+Better Approach :-
+==================
+
+class Solution {
+    class Pair {
+        int index;
+        double distance;
+        Pair(int index,double distance)
+        {
+            this.index=index;
+            this.distance=distance;
+        }
+    }
+    public double minMaxDist(int[] stations, int k) {
+        int n=stations.length;
+        int howMany[]=new int[n-1];
+        PriorityQueue<Pair> pq=new PriorityQueue<>((a,b)->Double.compare(b.distance,a.distance));
+        for(int i=0;i<n-1;i++)
+        {
+            pq.add(new Pair(i,stations[i+1]-stations[i]));
+        }
+        for(int i=1;i<=k;i++)
+        {
+            Pair top=pq.poll();
+            int maxIndex=top.index;
+            howMany[maxIndex]++;
+            double diff=stations[maxIndex+1]-stations[maxIndex];
+            double newdist=diff/(double)(howMany[maxIndex]+1);
+            pq.add(new Pair(maxIndex,newdist));
+        }
+
+        return pq.peek().distance;
+    }
+}
+
+Time Complexity :- O((n+k)logn)
+Space Complexity :- O(n)
+
+Optimal Approach :-
+===================
+
+public int gasStationsRequired(int stations[],double dist)
+    {
+        int required=0;
+        for(int i=0;i<stations.length-1;i++)
+        {
+            required+=(int)((stations[i+1]-stations[i])/dist);
+        }
+        return required;
+    }
+    public double minMaxDist(int[] stations, int k) {
+        int n=stations.length;
+        
+        double low=0,high=0;
+        for(int i=0;i<n-1;i++)
+        {
+            high=Math.max(high,stations[i+1]-stations[i]);
+        }
+        
+        while(high-low>1e-6)
+        {
+            double mid=low+(high-low)/2.0;
+            
+            if(gasStationsRequired(stations,mid)>k)
+            {
+                low=mid;
+            }
+            else
+            {
+                high=mid;
+            }
+        }
+        return high;
+    }
+
+Time Complexity :- O(n*klog2(max)) where, max is maximum difference between stations in the given array.
